@@ -1,0 +1,21 @@
+.walletPrompt {
+  width: 80%;
+  max-width: 600px;
+  background: rgba(52, 52, 52, 0.81);
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  backdrop-filter: blur(9px);
+  border-radius: 14px;
+  text-align: center;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  cursor: pointer;
+  outline: none;
+}
+.walletPrompt p {
+  margin: 0;
+}
+.walletPrompt img {
+  height: 90px;
+  margin-top: 20px;
+}

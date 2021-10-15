@@ -1,0 +1,15 @@
+.container {
+  border: 1px solid #018a44;
+  border-radius: 20px;
+  width: 600px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container img {
+  object-fit: cover;
+  width: 580px;
+  height: 180px;
+  border-radius: 10px;
+}

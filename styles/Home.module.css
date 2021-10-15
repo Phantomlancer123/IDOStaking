@@ -1,0 +1,70 @@
+.main {
+  position: relative;
+  height: calc(100vh - 157px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.pools {
+  position: relative;
+  padding: 40px;
+}
+.pools .banner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.pools h4 {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 20px 0;
+}
+.pools .liveIdos,
+.upComingIdos,
+.completedIdos {
+  text-align: center;
+  padding: 20px 0 40px 0;
+}
+
+.pools .container .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pools .container .noIdoText {
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+}
+.ido {
+  font-size: 14px;
+  color: #fff;
+}

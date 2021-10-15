@@ -1,0 +1,241 @@
+.main {
+  position: relative;
+  height: calc(100vh - 157px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.container {
+  position: relative;
+}
+.userStakingInfo {
+  color: #fff;
+  border: 1px solid #777777;
+  border-radius: 20px;
+  padding: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: flex;
+}
+.userStakingInfo .userTier {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: flex-start;
+  border-right: 1px solid #777777;
+}
+
+.userStakingInfo .userTier p span {
+  font-weight: 600;
+}
+
+.userStakingInfo .stakingHistory {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+.userStakingInfo .stakingHistory .history {
+  margin-top: 4%;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.userStakingInfo .stakingHistory button {
+  background: #343434;
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  border-radius: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.userStakingInfo .stakingHistory h5 {
+  font-weight: 700;
+}
+.userStakingInfo .stakingHistory h4 {
+  font-weight: 700;
+}
+.bottom {
+  display: flex;
+  width: 90%;
+  max-width: 1320px;
+  margin: auto;
+  margin-top: 3%;
+  color: #fff;
+}
+/* staking component */
+.bottom .stake {
+  width: 45%;
+  border: 1px solid #777777;
+  border-radius: 24px;
+}
+.bottom .stake .stakeHeader {
+  padding: 2%;
+  padding-left: 5%;
+  margin: 0;
+  border-radius: 24px 24px 0 0;
+  background-color: #666666;
+}
+.bottom .stake .stakeBody {
+  background: rgba(31, 31, 31, 0.05);
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottom .stake .stakeBody .stakeInput {
+  background: #343434;
+  width: 100%;
+  border: 1px solid #777777;
+  border-radius: 20px;
+  padding: 2%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.bottom .stake .stakeBody .stakeInput .left {
+  width: 50%;
+}
+.bottom .stake .stakeBody .stakeInput .left input {
+  width: 100%;
+  background: Transparent;
+  outline: none;
+  border: none;
+  line-height: 30px;
+  color: #fff;
+  font-size: 1.25em;
+  caret-color: #fff;
+}
+/* Chrome, Safari, Edge, Opera */
+.bottom .stake .stakeBody .stakeInput .left input::-webkit-outer-spin-button,
+.bottom .stake .stakeBody .stakeInput .left input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.bottom .stake .stakeBody .stakeInput .left input[type='number'] {
+  -moz-appearance: textfield;
+}
+.bottom .stake .stakeBody .stakeInput .right {
+  margin-left: auto;
+}
+.bottom .stake .stakeBody .stakeInput .right div {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.bottom .stake .stakeBody .stakeInput .right div button {
+  background: Transparent;
+  border: none;
+  color: #fff;
+  vertical-align: center;
+  cursor: pointer;
+  color: #666666;
+}
+
+.bottom .stake .stakeBody .stakeInput .right div h5 {
+  padding: 0;
+  margin: 0;
+}
+.bottom .stake .stakeBody .confirmButton {
+  background: #343434;
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  border-radius: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 5%;
+}
+
+.bottom .stake .stakeBody h4 {
+  font-weight: 700;
+}
+.bottom .stake .stakeBody h5 {
+  font-weight: 700;
+}
+
+/* tier info component */
+.bottom .tiersInfoContainer {
+  width: 45%;
+  border: 1px solid #777777;
+  border-radius: 24px;
+  margin-left: auto;
+  padding: 1%;
+}
+
+.bottom .tiersInfoContainer .tiersInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom .tiersInfoContainer .tiersInfo h4 {
+  font-weight: 700;
+}
+.bottom .tiersInfoContainer .tiersInfo h5 {
+  font-weight: 700;
+}
+.bottom .tiersInfoContainer .tiersInfo .tiers {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.bottom .tiersInfoContainer .tiersInfo .tiers div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottom .tiersInfoContainer .tiersInfo .tiers div img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+.bottom .tiersInfoContainer .tiersInfo button {
+  background: #343434;
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  border-radius: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}

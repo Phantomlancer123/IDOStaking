@@ -1,0 +1,88 @@
+.main {
+  position: relative;
+  height: calc(100vh - 157px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.dashboardContainer {
+  max-width: 1320px;
+  margin: auto;
+  color: #fff;
+}
+.dashboardContainer h5 {
+  font-weight: 700;
+  font-size: 1.25em;
+}
+.search {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  border: 1px solid #018a44;
+  border-radius: 16px;
+  padding: 1%;
+}
+.search input {
+  outline: none;
+  background: transparent;
+  width: 80%;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+}
+.tableContainer {
+  width: 100%;
+  border: 1px solid #018a44;
+  border-radius: 16px;
+  margin-top: 1%;
+  overflow: hidden;
+}
+.tableContainer table {
+  width: 100%;
+  border-bottom: none;
+  border-collapse: collapse;
+}
+
+.tableContainer table thead tr {
+  border-bottom: 1px solid #018a44;
+}
+.tableContainer thead tr th {
+  text-align: left;
+  padding: 1%;
+}
+.tableContainer table tbody tr {
+  border-bottom: 1px solid #018a44;
+}
+
+.tableContainer table tbody tr:last-child {
+  border-bottom: none;
+}
+.tableContainer table tbody tr td {
+  padding: 1%;
+}

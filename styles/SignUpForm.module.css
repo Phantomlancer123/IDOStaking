@@ -1,0 +1,113 @@
+.formContainer {
+  position: relative;
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+.formContainer div {
+  width: 45%;
+}
+.formContainer div img {
+  display: block;
+  margin: auto;
+  height: 6vh;
+  width: 6vw;
+}
+.formContainer div h3 {
+  text-align: center;
+  margin: 1%;
+  color: #fff;
+  font-weight: 700;
+}
+.form {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  border: 1px solid #777777;
+  border-radius: 20px;
+  color: #fff;
+}
+.form .inputsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+.form .inputsContainer div {
+  width: 100%;
+}
+.form .inputsContainer div input {
+  color: #fff;
+  margin: 0;
+  outline: none;
+  padding: 1%;
+  width: 100%;
+  margin-bottom: 1%;
+  border: 1px solid #777777;
+  background-color: #343434;
+  text-shadow: none;
+}
+.button {
+  border: none;
+  background-color: #018a44;
+  align-self: center;
+  border-radius: 14px;
+  cursor: pointer;
+  padding: 5px;
+  width: 40%;
+  font-weight: 600;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  outline: none;
+}
+.form .buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.label {
+  margin: 0;
+}
+.buttonsContainer .login {
+  align-self: center;
+  width: auto;
+}
+.login_link {
+  color: #41c0f2;
+  font-weight: 700;
+}
+.login_link:hover {
+  color: #1d9bf5;
+}
+.login_link:active {
+  color: #91d7f2;
+}
+.errorText {
+  color: #ff0000;
+  margin: 0;
+  margin-top: 1px;
+}
+.successText {
+  color: #005005;
+}
+
+@media only screen and (max-width: 768px) {
+  .formContainer div img {
+    width: 9vh;
+    height: 9vw;
+  }
+  .formContainer div {
+    width: 90%;
+  }
+  .button {
+    width: 100%;
+  }
+  .form .inputsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

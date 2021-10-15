@@ -1,0 +1,46 @@
+.main {
+  height: calc(100vh - 157px);
+  position: relative;
+  overflow: auto;
+  align-items: center;
+}
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.poolsContainer {
+  display: flex;
+  justify-content: center;
+}
+.pools {
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pools:nth-last-child(1) {
+  justify-content: center;
+}

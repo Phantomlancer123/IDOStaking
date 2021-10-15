@@ -1,0 +1,98 @@
+.formContainer {
+  position: relative;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer div {
+  width: 30vw;
+}
+.formContainer div h3 {
+  text-align: center;
+  margin: 1%;
+  color: #fff;
+  font-weight: 700;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #777777;
+  color: #fff;
+  border-radius: 20px;
+  width: 100%;
+  background: transparent;
+  padding: 5%;
+}
+
+.form div {
+  width: 100%;
+}
+.form div input {
+  margin: 0;
+  outline: none;
+  padding: 4%;
+  width: 100%;
+  border: 1px solid #777777;
+  color: #fff;
+  background: #343434;
+  text-shadow: none;
+}
+.button {
+  border: none;
+  border-radius: 14px;
+  padding: 5px;
+  width: 100%;
+  background-color: #41c0f2;
+  font-weight: 600;
+  margin-top: 8%;
+  margin-bottom: 1%;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1d9bf5;
+}
+.button:active {
+  background-color: #91d7f2;
+}
+.signup_link {
+  width: 100%;
+  color: #4cbf2c;
+}
+.signupButton:hover {
+  background-color: #4cbf2c;
+}
+.forgotPassword {
+  text-align: center;
+}
+.forgot_password_link {
+  color: #ff0000;
+  margin-bottom: 24px;
+}
+.p {
+  display: inline;
+  margin: 0;
+}
+.createAccount {
+  text-align: center;
+}
+.formTitle {
+  align-self: center;
+}
+.errorText {
+  color: #ff0000;
+  margin: 0;
+  margin-top: 1px;
+}
+
+@media only screen and (max-width: 768px) {
+  .formContainer div {
+    width: 90%;
+  }
+  .form div {
+    width: 100%;
+  }
+}

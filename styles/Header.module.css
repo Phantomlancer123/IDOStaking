@@ -1,0 +1,59 @@
+.container {
+  position: relative;
+  height: 4.8125em;
+  display: flex;
+  justify-content: center;
+}
+.container div {
+  display: flex;
+  height: 4.8125em;
+  align-items: center;
+  width: 90%;
+  max-width: 1320px;
+}
+.container div a img {
+  width: 180px;
+  height: 60px;
+}
+
+.container nav {
+  margin-left: auto;
+}
+.container nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.container nav ul li {
+  margin-right: 1.875em;
+}
+.container nav ul li:nth-last-child(1) {
+  margin-right: 0;
+}
+.container nav ul li a {
+  text-decoration: none;
+  color: #abafc7;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.container nav ul li a:hover {
+  color: #fff;
+}
+.container nav ul li .active {
+  color: #fff;
+  font-size: 18px;
+}
+.container nav ul li button {
+  background-color: #018a44;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 1px;
+  width: 139px;
+  padding: 7%;
+  cursor: pointer;
+}

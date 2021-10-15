@@ -1,0 +1,114 @@
+.formContainer {
+  position: relative;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer div {
+  width: 50vw;
+}
+.formContainer div h3 {
+  text-align: center;
+  margin: 1%;
+  color: #fff;
+  font-weight: 700;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #777777;
+  color: #fff;
+  border-radius: 20px;
+  width: 100%;
+  background: transparent;
+  align-items: center;
+}
+
+.form .inputsContainer {
+  margin-top: 5%;
+  padding: 0 5% 0 5%;
+  height: 40vh;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 2%;
+}
+
+.form .inputsContainer::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.form .inputsContainer::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.form .inputsContainer::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.form .inputsContainer::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.form .inputsContainer div {
+  width: 100%;
+}
+.form .inputsContainer div p {
+  margin: 1%;
+  color: #fff;
+}
+.form .inputsContainer div input {
+  margin: 0;
+  outline: none;
+  padding: 4%;
+  width: 100%;
+  border: 1px solid #777777;
+  color: #fff;
+  background: #343434;
+  text-shadow: none;
+}
+.button {
+  border: none;
+  border-radius: 14px;
+  padding: 5px;
+  width: 50%;
+  text-align: center;
+  background-color: #41c0f2;
+  font-weight: 600;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1d9bf5;
+}
+.button:active {
+  background-color: #91d7f2;
+}
+.p {
+  display: inline;
+  margin: 0;
+}
+.formTitle {
+  align-self: center;
+}
+.errorText {
+  color: #ff0000;
+  margin: 0;
+  margin-top: 1px;
+}
+.successText {
+  color: #018a44;
+}
+
+@media only screen and (max-width: 768px) {
+  .formContainer div {
+    width: 90%;
+  }
+  .form div {
+    width: 100%;
+  }
+}

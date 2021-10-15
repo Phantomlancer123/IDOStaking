@@ -1,0 +1,148 @@
+.idoContainer {
+  min-width: 1030px;
+  max-width: 70%;
+  margin: auto;
+}
+.idoContainer .backBtn {
+  float: left;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+.idoContainer h4 {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 20px 0;
+}
+.idoContainer .idoHeader {
+  background: #343434;
+  padding: 20px 5px;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  align-items: center;
+  max-height: 104px;
+}
+.idoHeader .row {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.idoHeader .row .rowColumn {
+  flex: 0 0 auto;
+  width: 33.3333333333%;
+}
+.idoHeader .row .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.idoHeader .row .left .idoLogo {
+  float: left;
+}
+
+.idoHeader .row .left .idoLogo img {
+  height: 64px;
+  max-width: 98px;
+  margin: 0 20px;
+  vertical-align: middle;
+}
+
+.idoHeader .row .left .idoLinks {
+  font-size: 12px;
+}
+
+.idoHeader .row .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.idoHeader .row .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+  margin-left: auto;
+}
+
+.idoHeader .row .right p {
+  margin: 0;
+}
+.idoBody {
+  padding: 40px 30px;
+}
+.idoBody .row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.idoBody .row p {
+  margin-top: 0;
+  max-width: 70%;
+  margin-bottom: 1rem;
+}
+.idoBody .row button {
+  background: #343434;
+  margin-left: auto;
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  border-radius: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  align-self: flex-end;
+  cursor: pointer;
+}
+.idoBody .idoStatus {
+  text-align: center;
+}
+.progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 20px;
+  border: 1px solid #777777;
+}
+.progress .filler {
+  height: 100%;
+  background-color: #007aff;
+}
+.idoBody .idoPadded {
+  padding: 10px 40px;
+  margin-bottom: 40px;
+}
+.idoBody .idoPadded .filledTotal {
+  margin-left: auto;
+}
+.idoBody .idoInfo {
+  border: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.idoBody .idoInfo .infoHeader {
+  background: #222;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-align: left;
+}
+.idoBody .idoInfo .infoRow {
+  border-bottom: 1px solid #222;
+  padding: 10px;
+}
+.idoBody .idoInfo .infoRow p {
+  margin: 0;
+}
+.idoBody .idoInfo .infoRow p:nth-last-child(1) {
+  margin-left: auto;
+  width: 50%;
+}
+.tokenInfo {
+  margin-left: auto;
+}

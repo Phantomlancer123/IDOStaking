@@ -1,0 +1,69 @@
+.container {
+  position: relative;
+  height: 4.8125em;
+  display: flex;
+  justify-content: center;
+}
+.container div {
+  display: flex;
+  height: 4.8125em;
+  align-items: center;
+  width: 90%;
+  max-width: 1320px;
+}
+.container div a img {
+  width: 180px;
+  height: 60px;
+}
+
+.container nav {
+  margin-left: auto;
+}
+.container nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.container nav ul li {
+  margin-right: 1.875em;
+}
+.container nav ul li:nth-last-child(1) {
+  margin-right: 0;
+}
+.container nav ul li a {
+  text-decoration: none;
+  color: #abafc7;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.container nav ul li a:hover {
+  color: #fff;
+}
+.container nav ul li .active {
+  color: #fff;
+  font-size: 18px;
+}
+.container nav ul li .addIdo {
+  background: #343434;
+  border: 1px solid #777777;
+  box-shadow: -15px 20px 50px rgb(0 0 0 / 30%);
+  border-radius: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.container nav ul li .connectButton {
+  background-color: #018a44;
+  border: none;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 24px;
+}

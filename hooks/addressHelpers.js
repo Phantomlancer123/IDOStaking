@@ -4,7 +4,7 @@ export const getIDOFactoryAddress = () => {
 }
 
 export const getStakingAddress = () => {
-  return '0x9C94F63812e81A2B2e183A85b522492733f0A1A9'
+  return '0xfeE7BA3E72267fF7469f36A863b6cE8540D341e5'
 }
 
 export const getCEAddress = () => {

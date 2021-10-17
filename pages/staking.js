@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import useWeb3 from '../hooks/useWeb3'
 import { useStaking, useCEToken } from '../hooks/useContract'
-import { getBalanceOfCE, setStake, setCEApprove } from '../hooks/common'
+import { getBalanceOfCE, getBalanceOfCEG, setStake, setCEApprove, getStakeAmount, getStakeProfit, setWithdraw } from '../hooks/common'
 import { ConnectMetamask } from '../components/ConnectMetamask';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
@@ -16,21 +16,28 @@ export default function Staking() {
   const [balance, setBalance] = useState(0);
   const [stakeAmount, setStakeAmount] = useState(0);
   const [approve, setApprove] = useState(false);
+  const [totalStakeAmount, setTotalStakeAmount] = useState(0);
+  const [stakeProfit, setStakeProfit] = useState(0);
 
   const web3 = useWeb3()
   const StakingContract = useStaking()
   const CETokenContract = useCEToken()
 
   useEffect(async () => {
-    if (ethAddress !== '')
+    if (ethAddress !== '') {
       setBalance(await getBalanceOfCE(web3, CETokenContract, ethAddress));
+      setTotalStakeAmount(await getStakeAmount(web3, StakingContract, ethAddress));
+      setStakeProfit(await getStakeProfit(web3, StakingContract, ethAddress));
+    }
   }, [ethAddress]);
 
   const handleStake = async () => {
     let response;
     if (approve === true) {
       response = await setStake(web3, StakingContract, ethAddress, stakeAmount);
-      if (response.status === true){
+      setTotalStakeAmount(await getStakeAmount(web3, StakingContract, ethAddress));
+      setStakeProfit(await getStakeProfit(web3, StakingContract, ethAddress));
+      if (response.status === true) {
         setApprove(false);
         setStakeAmount(0);
       }
@@ -39,6 +46,11 @@ export default function Staking() {
       if (response.status === true)
         setApprove(true);
     }
+    return;
+  }
+
+  const withdraw = async () => {
+    await setWithdraw(web3, StakingContract, ethAddress, totalStakeAmount);
     return;
   }
 
@@ -82,20 +94,20 @@ export default function Staking() {
                   Current staking APY: <span>20%</span>
                 </p>
                 <p>
-                  Accumulated staking yield: <span>0.0 CE</span>
+                  Accumulated staking yield: <span>{stakeProfit} CE</span>
                 </p>
                 <p>
-                  Validated staked amount: <span>0.0 CE</span>
+                  Validated staked amount: <span>{stakeProfit} CE</span>
                 </p>
               </div>
               <div className={styles.stakingHistory}>
                 <h4>Total staked amount</h4>
-                <h5>0.0 CE</h5>
-                <div className={styles.history}>
+                <h5>{totalStakeAmount} CE</h5>
+                {/* <div className={styles.history}>
                   <HistoryIcon />
                   <i> No staking history</i>
-                </div>
-                <button>Withdraw</button>
+                </div> */}
+                <button onClick={withdraw}>Withdraw</button>
               </div>
             </div>
             <section className={styles.bottom}>

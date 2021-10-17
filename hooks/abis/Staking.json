@@ -106,6 +106,44 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "checkCurrentRewards",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "rewards_",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "checkStake",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "stake_",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "freezeStaking",
             "outputs": [],

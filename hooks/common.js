@@ -28,6 +28,15 @@ export const getBalanceOfCE = async (web3, contract, account) => {
     }
 }
 
+export const getBalanceOfCEG = async (web3, contract, account) => {
+    if (contract){
+        const response = await contract.methods.balanceOf(account).call()
+        return parseFloat(web3.utils.fromWei(response, 'ether')) 
+    }else{
+        return [];
+    }
+}
+
 export const setCEApprove = async (web3, contract, account, amount) => {
     if (contract){
         const response = await contract.methods.approve(getStakingAddress(), web3.utils.toWei(amount+1, 'ether')).send({ from: account });
@@ -41,6 +50,35 @@ export const setCEApprove = async (web3, contract, account, amount) => {
 export const setStake = async (web3, contract, account, amount) => {
     if (contract){
         const response = await contract.methods.stake(web3.utils.toWei(amount, 'ether')).send({ from: account });
+        console.log(response)
+        return response
+    }else{
+        return [];
+    }
+}
+
+export const getStakeAmount = async (web3, contract, account) => {
+    if (contract){
+        const response = await contract.methods.checkStake(account).call();
+        return web3.utils.fromWei(response, 'ether');
+    }else{
+        return [];
+    }
+}
+
+export const getStakeProfit = async (web3, contract, account) => {
+    if (contract){
+        const response = await contract.methods.checkCurrentRewards(account).call();
+        console.log(response, "-------")
+        return web3.utils.fromWei(response, 'ether');
+    }else{
+        return [];
+    }
+}
+
+export const setWithdraw = async (web3, contract, account, amount) => {
+    if (contract){
+        const response = await contract.methods.withdraw(web3.utils.toWei(amount, 'ether')).send({ from: account });
         console.log(response)
         return response
     }else{

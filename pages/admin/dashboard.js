@@ -2,10 +2,12 @@ import axios from 'axios';
 import Cookies from 'cookies';
 import * as jwt from 'jsonwebtoken';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Carousel from 'react-material-ui-carousel';
 
 import { AdminDashboardHeader } from '../../components/AdminDashboardHeader';
 import { AdminIdoPool } from '../../components/AdminIdoPool';
+import { BannerItem } from '../../components/BannerItem';
 import { ConnectMetamask } from '../../components/ConnectMetamask';
 import { Footer } from '../../components/Footer';
 import { IdoInfo } from '../../components/IdoInfo';
@@ -16,6 +18,19 @@ export default function AdminDashboard({ idoData }) {
   const [connectionText, setConnectionText] = useState('');
   const [idos, setIdos] = useState(idoData);
   const [selectedPool, setSelectedPool] = useState({});
+
+  const [banners, setBanners] = useState([]);
+
+  const getBanners = async () => {
+    const url = '/api/banners';
+    const response = await axios.get(url);
+    setBanners(response.data);
+  };
+
+  useEffect(() => {
+    getBanners();
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -50,6 +65,13 @@ export default function AdminDashboard({ idoData }) {
           </section>
         ) : (Object.keys(selectedPool).length === 0 ? (
           <section className={styles.pools}>
+            <div className={styles.banner}>
+              <Carousel indicators={true}>
+                {banners.map(banner => {
+                  return <BannerItem item={banner} key={banner.path} />;
+                })}
+              </Carousel>
+            </div>
             <h4>Live IDOs</h4>
             <div className={styles.liveIdos}>
               <div className={styles.container}>

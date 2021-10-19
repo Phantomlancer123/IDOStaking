@@ -1,0 +1,34 @@
+.newsItem {
+  margin-top: 4%;
+}
+
+.newsItem a {
+  text-decoration: underline;
+}
+
+.newsItem div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
+}
+.newsItem img {
+  width: 30px;
+}
+
+.newsItem div:nth-child(1) h3 {
+  margin-left: 1%;
+}
+.newsItem div:nth-child(1) div {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  background-color: #212121;
+  border: 1px solid #018a44;
+  justify-content: center;
+  align-items: center;
+}
+.newsItem div:nth-child(2) {
+  margin-left: 2%;
+  margin-right: 2%;
+}

@@ -66,7 +66,7 @@ export const AdminDashboardHeader = ({
   return (
     <header className={styles.container}>
       <div>
-        <Link href="/">
+        <Link href="/admin/dashboard">
           <a>
             <img src="/logo.png" alt="logo" />
           </a>
@@ -87,6 +87,17 @@ export const AdminDashboardHeader = ({
               <button onClick={handleAddIdoClick} className={styles.addIdo}>
                 <AddIcon /> Add Ido
               </button>
+            </li>
+            <li>
+              <Link href="/admin/banners">
+                <a
+                  className={
+                    router.pathname === 'admin/editbanners' ? styles.active : ''
+                  }
+                >
+                  Banners
+                </a>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -66,6 +66,12 @@
   padding: 20px 0 40px 0;
 }
 
+.pools .banner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .pools .container .row {
   display: flex;
   flex-wrap: wrap;

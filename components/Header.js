@@ -190,7 +190,7 @@ export const Header = ({ ethAddress, setEthAddress, setConnectionText }) => {
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/latest">
                 <a
                   className={router.pathname === '/latest' ? styles.active : ''}
                 >

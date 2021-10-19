@@ -27,18 +27,15 @@ export default function Home() {
     completed: [
     ]
   });
-  const [bannerItems, setBannerItems] = useState([
-    {
-      url: 'https://techcrunch.com/wp-content/uploads/2018/03/chia-crypto-logo.png?w=680'
-    },
-    {
-      url: 'https://paidnetwork.com/wp-content/uploads/2021/01/PAID-polkadot-full-1.png'
-    },
-    {
-      url: 'https://cdn-scaliomcms-prod.s3-us-west-1.amazonaws.com/casperlabs/casper-card.jpg'
-    }
-  ]);
+  const [banners, setBanners] = useState([]);
   const [selectedPool, setSelectedPool] = useState({});
+  
+  const getBanners = async () => {
+    const url = '/api/banners';
+    const response = await axios.get(url);
+    setBanners(response.data);
+  };
+  
   useEffect(async () => {
     let counter = await getCounter(web3, IDOFactoryContract);
     let data = [];
@@ -69,6 +66,7 @@ export default function Home() {
       setIdos(idoData);
     };
     getIdos();
+getBanners();
   }, []);
   useEffect(async () => {
   }, [ethAddress]);
@@ -108,8 +106,8 @@ export default function Home() {
           <section className={styles.pools}>
             <div className={styles.banner}>
               <Carousel indicators={true}>
-                {bannerItems.map(bannerItem => {
-                  return <BannerItem item={bannerItem} key={bannerItem.url} />;
+                {banners.map(banner => {
+                  return <BannerItem item={banner} key={banner._id} />;
                 })}
               </Carousel>
             </div>

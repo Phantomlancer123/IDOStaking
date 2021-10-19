@@ -39,6 +39,10 @@ const validationSchema = yup.object({
   symbol: yup
     .string("Enter the project's token symbol")
     .required('Symbol is required'),
+  medium: yup.string("Enter the project's medium link"),
+  track_news: yup
+    .boolean('Value for track_news should be true or false')
+    .required('Track news is required'),
   supply: yup
     .string("Enter the project's token supply")
     .required('Supply is required'),
@@ -78,7 +82,9 @@ const EditIdoForm = ({ ido }) => {
       supply: ido.supply,
       price: ido.price,
       poolCap: ido.poolCap,
-      access: ido.access
+      access: ido.access,
+      track_news: ido.track_news || false,
+      medium: ido.medium || ''
     },
     validationSchema: validationSchema,
     onSubmit: values => {
@@ -97,7 +103,7 @@ const EditIdoForm = ({ ido }) => {
         headers,
         data: updatedIdo
       })
-        .then(response => {
+        .then(() => {
           setIdoSuccess({
             exists: true,
             message: 'Ido updated succesfully'
@@ -331,6 +337,34 @@ const EditIdoForm = ({ ido }) => {
               />
               {formik.touched.access && formik.errors.access ? (
                 <p className={styles.errorText}>{formik.errors.access}</p>
+              ) : null}
+            </div>
+            <div>
+              <p>medium</p>
+              <input
+                id="medium"
+                name="medium"
+                type="text"
+                placeholder="medium"
+                value={formik.values.medium}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.medium && formik.errors.medium ? (
+                <p className={styles.errorText}>{formik.errors.medium}</p>
+              ) : null}
+            </div>
+            <div>
+              <p>Track news</p>
+              <input
+                id="track_news"
+                name="track_news"
+                type="text"
+                placeholder="track_news"
+                value={formik.values.track_news}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.track_news && formik.errors.track_news ? (
+                <p className={styles.errorText}>{formik.errors.track_news}</p>
               ) : null}
             </div>
           </div>

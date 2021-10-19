@@ -94,6 +94,8 @@ export default async function handler(req, res) {
         pair,
         description,
         progress,
+        track_news,
+        medium,
         swapRate,
         symbol,
         supply,
@@ -146,6 +148,8 @@ export default async function handler(req, res) {
           symbol,
           supply,
           price,
+          track_news,
+          medium,
           poolCap,
           access,
           participants

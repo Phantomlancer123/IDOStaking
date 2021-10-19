@@ -46,14 +46,18 @@
 }
 .userStakingInfo .userTier {
   display: flex;
-  flex-direction: column;
   width: 50%;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   border-right: 1px solid #777777;
 }
 
-.userStakingInfo .userTier p span {
-  font-weight: 600;
+.userStakingInfo .userTier h4 {
+  font-weight: 700;
+}
+
+.userStakingInfo .userTier h5 {
+  font-weight: 700;
 }
 
 .userStakingInfo .stakingHistory {

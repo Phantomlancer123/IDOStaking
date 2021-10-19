@@ -1,0 +1,139 @@
+.main {
+  position: relative;
+  height: calc(100vh - 157px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container div:nth-child(1) {
+  align-self: center;
+}
+
+.container div:nth-child(1) h1 {
+  color: #fff;
+}
+
+.container form h1 {
+  color: #fff;
+}
+
+.container form button {
+  outline: none;
+  background: #343434;
+  border: none;
+  padding: 10px 40px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.gallery {
+  background: transparent;
+  display: grid;
+  height: 360px;
+  overflow: auto;
+  grid-template-columns: 400px 400px;
+  grid-gap: 1%;
+  /* hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.gallery::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.gallery::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.gallery::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+
+.gallery div {
+  width: 400px;
+  background: #212121;
+}
+
+.gallery div img {
+  width: 400px;
+  height: 180px;
+}
+
+.banner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+}
+
+.editButton {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  padding: 4px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.buttons button img {
+  height: 20px;
+  width: 20px;
+}
+
+.errorText {
+  color: #ff0000;
+}
+
+.successText {
+  color: #4cbf2c;
+}

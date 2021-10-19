@@ -106,13 +106,7 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "owner",
-                    "type": "address"
-                }
-            ],
+            "inputs": [],
             "name": "checkCurrentRewards",
             "outputs": [
                 {
@@ -125,13 +119,7 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "owner",
-                    "type": "address"
-                }
-            ],
+            "inputs": [],
             "name": "checkStake",
             "outputs": [
                 {

@@ -59,6 +59,13 @@ const IdoSchema = new Schema(
       type: String,
       required: true
     },
+    medium: {
+      type: String
+    },
+    track_news: {
+      type: Boolean,
+      default: false
+    },
     access: {
       type: String,
       enum: ['PRIVATE', 'PUBLIC'],

@@ -1,0 +1,65 @@
+.main {
+  height: calc(100vh - 157px);
+  position: relative;
+  overflow: auto;
+  align-items: center;
+}
+.main::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #018a44;
+  border-radius: 15px;
+}
+.main::-webkit-scrollbar-thumb:hover {
+  background: #018a44;
+}
+.main::-webkit-scrollbar-track {
+  background: #4d4d4d;
+  border-radius: 0px;
+}
+.wrapper {
+  display: flex;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.rootContainer {
+  max-width: 1000px;
+  margin: auto;
+  color: #fff;
+}
+.search {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  border: 1px solid #018a44;
+  border-radius: 16px;
+  padding: 1%;
+}
+.search input {
+  outline: none;
+  background: transparent;
+  width: 80%;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.rootContainer h5 {
+  padding-top: 1%;
+  text-align: center;
+}
+.newsItemsContainer {
+  border: 1px solid #018a44;
+  border-radius: 10px;
+  background-color: #212121;
+}

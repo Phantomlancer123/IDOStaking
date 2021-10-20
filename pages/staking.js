@@ -3,8 +3,8 @@ import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 
 import useWeb3 from '../hooks/useWeb3'
-import { useStaking, useCEToken } from '../hooks/useContract'
-import { getBalanceOfCE, getBalanceOfCEG, setStake, setCEApprove, getStakeAmount, getStakeProfit, setWithdraw } from '../hooks/common'
+import { useStaking, useCEToken, useCEGToken } from '../hooks/useContract'
+import { getBalanceOfCE, getBalanceOfCEG, setStake, setTokenApprove, getStakeAmount, getStakeProfit, setWithdraw } from '../hooks/common'
 import { ConnectMetamask } from '../components/ConnectMetamask';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
@@ -16,12 +16,18 @@ export default function Staking() {
   const [balance, setBalance] = useState(0);
   const [stakeAmount, setStakeAmount] = useState(0);
   const [approve, setApprove] = useState(false);
+  const [withdrawApprove, setWithdrawApprove] = useState(false);
   const [totalStakeAmount, setTotalStakeAmount] = useState(0);
   const [stakeProfit, setStakeProfit] = useState(0);
+  const [error, setError] = useState({
+    exists: false,
+    error: ''
+  });
 
   const web3 = useWeb3()
   const StakingContract = useStaking()
   const CETokenContract = useCEToken()
+  const CEGTokenContract = useCEGToken()
 
   useEffect(async () => {
     if (ethAddress !== '') {
@@ -42,7 +48,7 @@ export default function Staking() {
         setStakeAmount(0);
       }
     } else {
-      response = await setCEApprove(web3, CETokenContract, ethAddress, stakeAmount);
+      response = await setTokenApprove(web3, CETokenContract, ethAddress, stakeAmount);
       if (response.status === true)
         setApprove(true);
     }
@@ -50,8 +56,35 @@ export default function Staking() {
   }
 
   const withdraw = async () => {
-    await setWithdraw(web3, StakingContract, ethAddress, totalStakeAmount);
-    return;
+    try {
+      let response;
+      if (withdrawApprove === true) {
+        response = await setWithdraw(web3, StakingContract, ethAddress, totalStakeAmount);
+        setTotalStakeAmount(await getStakeAmount(web3, StakingContract, ethAddress));
+        setStakeProfit(await getStakeProfit(web3, StakingContract, ethAddress));
+        if (response.status === true) {
+          setWithdrawApprove(false);
+        }
+      } else {
+        response = await setTokenApprove(web3, CEGTokenContract, ethAddress, totalStakeAmount);
+        if (response.status === true)
+        setWithdrawApprove(true);
+      }
+      return;
+    } catch (e) {
+      console.log(e)
+      setError({
+        exists: true,
+        message: 'Error occured'
+      });
+      setTimeout(() => {
+        setError({
+          exists: false,
+          message: ''
+        });
+      }, 4000);
+      return false;
+    }
   }
 
   return (
@@ -107,7 +140,10 @@ export default function Staking() {
                   <HistoryIcon />
                   <i> No staking history</i>
                 </div> */}
-                <button onClick={withdraw}>Withdraw</button>
+                <button onClick={withdraw}>{withdrawApprove === true ? 'Withdraw' : 'Approve'}</button>
+                {error.exists && (
+                  <p className={styles.errorText}>{error.message}</p>
+                )}
               </div>
             </div>
             <section className={styles.bottom}>

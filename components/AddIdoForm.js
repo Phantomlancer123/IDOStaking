@@ -55,7 +55,19 @@ const validationSchema = yup.object({
   access: yup
     .mixed()
     .oneOf(['PRIVATE', 'PUBLIC'])
-    .required('access is required')
+    .required('access is required'),
+  tokenAddress: yup
+    .string('Enter the ido token address')
+    .required('Token address is required'),
+  whitelistedAddresses: yup
+    .string('Enter the ido whitelisted addresses')
+    .required('whitelisted addresses is required'),
+  hardCap: yup.string('Enter the ido hard cap').required('Hard cap is required'),
+  softCap: yup.string('Enter the ido soft cap').required('soft cap is required'),
+  maxInvest: yup.string('Enter the ido max invest').required('Max invest is required'),
+  minInvest: yup.string('Enter the ido min invest').required('Min invest is required'),
+  openTime: yup.string('Enter the ido open time').required('Open time is required'),
+  closeTime: yup.string('Enter the ido close time').required('Close time is required')
 });
 
 const AddIdoForm = () => {
@@ -91,26 +103,47 @@ const AddIdoForm = () => {
       supply: '',
       price: '',
       poolCap: '',
-      access: ''
+      access: '',
+      tokenAddress: '',
+      whitelistedAddresses: '',
+      hardCap: '',
+      softCap: '',
+      maxInvest: '',
+      minInvest: '',
+      openTime: new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate(),
+      closeTime: new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate()
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       if (approve === false) {
-        let response = await setCEApproveFactory(web3, CETokenContract, ethAddress, parseFloat(values.supply) / parseFloat(values.price));
+        let response = await setCEApproveFactory(web3, CETokenContract, ethAddress, parseFloat(values.hardCap) / parseFloat(values.price));
         if (response.status === true)
           setApprove(true);
       } else {
         console.log(values)
+        if (new Date(values.closeTime).getTime() / 1000 === new Date(values.openTime).getTime() / 1000) {
+          setIdoError({
+            exists: true,
+            message: 'Close time should be later than open time'
+          });
+          setTimeout(() => {
+            setIdoError({
+              exists: false,
+              message: ''
+            });
+          }, 4000);
+          return;
+        }
         const IdoMainInfo = {
           tokenAddress: '0xF32075F125e39813810c9d9D86B1e11F8686Be23',
-          whitelistedAddresses: ['0x20eC965f19Ec9458f2ca9E1b0c95514be03AB71f'],
+          whitelistedAddresses: values.whitelistedAddresses.split(','),
           tokenPriceInWei: web3.utils.toWei(values.price, 'ether'),
-          hardCapInWei: web3.utils.toWei(values.supply, 'ether'),
-          softCapInWei: web3.utils.toWei(values.supply, 'ether'),
-          maxInvestInWei: "250000000000000000",
-          minInvestInWei: "250000000000000000",
-          openTime: new Date().getTime(),
-          closeTime: new Date().getTime() + 86400,
+          hardCapInWei: web3.utils.toWei(values.hardCap, 'ether'),
+          softCapInWei: web3.utils.toWei(values.softCap, 'ether'),
+          maxInvestInWei: web3.utils.toWei(values.maxInvest, 'ether'),
+          minInvestInWei: web3.utils.toWei(values.minInvest, 'ether'),
+          openTime: new Date(values.openTime).getTime() / 1000,
+          closeTime: new Date(values.closeTime).getTime() / 1000,
           decimals: 18,
         };
 
@@ -178,8 +211,23 @@ const AddIdoForm = () => {
   };
 
   const addIdoForm = async (info, link, presale) => {
-    let response = await addIdo(web3, FactoryContract, ethAddress, info, link);
-    return response.status;
+    console.log(info)
+    try {
+      let response = await addIdo(web3, FactoryContract, ethAddress, info, link);
+      return response.status;
+    } catch (e) {
+      setIdoError({
+        exists: true,
+        message: e.code + " - " + e.argument
+      });
+      setTimeout(() => {
+        setIdoError({
+          exists: false,
+          message: ''
+        });
+      }, 4000);
+      return false;
+    }
   }
 
   return (
@@ -392,6 +440,118 @@ const AddIdoForm = () => {
                 />
                 {formik.touched.access && formik.errors.access ? (
                   <p className={styles.errorText}>{formik.errors.access}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Token Address</p>
+                <input
+                  id="tokenAddress"
+                  name="tokenAddress"
+                  type="text"
+                  placeholder="token address"
+                  value={formik.values.tokenAddress}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.tokenAddress && formik.errors.tokenAddress ? (
+                  <p className={styles.errorText}>{formik.errors.tokenAddress}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Whitelisted Addresses</p>
+                <input
+                  id="whitelistedAddresses"
+                  name="whitelistedAddresses"
+                  type="text"
+                  placeholder="whitelisted Addresses - please input with split <,>"
+                  value={formik.values.whitelistedAddresses}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.whitelistedAddresses && formik.errors.whitelistedAddresses ? (
+                  <p className={styles.errorText}>{formik.errors.whitelistedAddresses}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Hard Cap</p>
+                <input
+                  id="hardCap"
+                  name="hardCap"
+                  type="text"
+                  placeholder="hard cap"
+                  value={formik.values.hardCap}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.hardCap && formik.errors.hardCap ? (
+                  <p className={styles.errorText}>{formik.errors.hardCap}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Soft Cap</p>
+                <input
+                  id="softCap"
+                  name="softCap"
+                  type="text"
+                  placeholder="soft cap"
+                  value={formik.values.softCap}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.softCap && formik.errors.softCap ? (
+                  <p className={styles.errorText}>{formik.errors.softCap}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Max Invest</p>
+                <input
+                  id="maxInvest"
+                  name="maxInvest"
+                  type="text"
+                  placeholder="max invest"
+                  value={formik.values.maxInvest}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.maxInvest && formik.errors.maxInvest ? (
+                  <p className={styles.errorText}>{formik.errors.maxInvest}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Min Invest</p>
+                <input
+                  id="minInvest"
+                  name="minInvest"
+                  type="text"
+                  placeholder="min invest"
+                  value={formik.values.minInvest}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.minInvest && formik.errors.minInvest ? (
+                  <p className={styles.errorText}>{formik.errors.minInvest}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Open Time</p>
+                <input
+                  id="openTime"
+                  name="openTime"
+                  type="text"
+                  placeholder="open time (2021-10-20)"
+                  value={formik.values.openTime}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.openTime && formik.errors.openTime ? (
+                  <p className={styles.errorText}>{formik.errors.openTime}</p>
+                ) : null}
+              </div>
+              <div>
+                <p>Close Time</p>
+                <input
+                  id="closeTime"
+                  name="closeTime"
+                  type="text"
+                  placeholder="close time (2021-10-20)"
+                  value={formik.values.closeTime}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.closeTime && formik.errors.closeTime ? (
+                  <p className={styles.errorText}>{formik.errors.closeTime}</p>
                 ) : null}
               </div>
             </div>

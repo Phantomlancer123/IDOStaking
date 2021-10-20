@@ -38,7 +38,7 @@ export const getBalanceOfCEG = async (web3, contract, account) => {
     }
 }
 
-export const setCEApprove = async (web3, contract, account, amount) => {
+export const setTokenApprove = async (web3, contract, account, amount) => {
     if (contract){
         const response = await contract.methods.approve(getStakingAddress(), web3.utils.toWei(amount+1, 'ether')).send({ from: account });
         console.log(response)
@@ -47,6 +47,7 @@ export const setCEApprove = async (web3, contract, account, amount) => {
         return [];
     }
 }
+
 
 export const setStake = async (web3, contract, account, amount) => {
     if (contract){

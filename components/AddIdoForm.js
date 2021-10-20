@@ -121,48 +121,50 @@ const AddIdoForm = () => {
           linkTwitter: ethers.utils.formatBytes32String(values.twitter),
           linkWebsite: ethers.utils.formatBytes32String(values.website),
         };
-        addIdoForm(IdoMainInfo, Links, {
+        let responseStatus = addIdoForm(IdoMainInfo, Links, {
           value: "10000000000000000",
           gasLimit: 5000000,
         });
-        const ido = {
-          ...values
-        };
-        const token = Cookies.get('access_token');
-        const headers = {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`
-        };
-        axios({
-          method: 'post',
-          url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/idos`,
-          headers,
-          data: ido
-        })
-          .then(response => {
-            setIdoSuccess({
-              exists: true,
-              message: 'Ido added succesfully'
-            });
-            setTimeout(() => {
-              setIdoSuccess({
-                exists: false,
-                message: ''
-              });
-            }, 4000);
+        if (responseStatus === true) {
+          const ido = {
+            ...values
+          };
+          const token = Cookies.get('access_token');
+          const headers = {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`
+          };
+          axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/idos`,
+            headers,
+            data: ido
           })
-          .catch(error => {
-            setIdoError({
-              exists: true,
-              message: error.response.data.message
-            });
-            setTimeout(() => {
-              setIdoError({
-                exists: false,
-                message: ''
+            .then(response => {
+              setIdoSuccess({
+                exists: true,
+                message: 'Ido added succesfully'
               });
-            }, 4000);
-          });
+              setTimeout(() => {
+                setIdoSuccess({
+                  exists: false,
+                  message: ''
+                });
+              }, 4000);
+            })
+            .catch(error => {
+              setIdoError({
+                exists: true,
+                message: error.response.data.message
+              });
+              setTimeout(() => {
+                setIdoError({
+                  exists: false,
+                  message: ''
+                });
+              }, 4000);
+            });
+        }
       }
     }
   });
@@ -176,8 +178,8 @@ const AddIdoForm = () => {
   };
 
   const addIdoForm = async (info, link, presale) => {
-    await addIdo(web3, FactoryContract, ethAddress, info, link);
-    return;
+    let response = await addIdo(web3, FactoryContract, ethAddress, info, link);
+    return response.status;
   }
 
   return (

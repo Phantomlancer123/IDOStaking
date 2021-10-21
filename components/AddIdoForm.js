@@ -154,11 +154,23 @@ const AddIdoForm = () => {
           linkTwitter: ethers.utils.formatBytes32String(values.twitter),
           linkWebsite: ethers.utils.formatBytes32String(values.website),
         };
-        let responseStatus = addIdoForm(IdoMainInfo, Links, {
-          value: "10000000000000000",
-          gasLimit: 5000000,
-        });
-        if (responseStatus === true) {
+        let addStatus;
+        try {
+          addStatus = await addIdo(web3, FactoryContract, ethAddress, IdoMainInfo, Links);
+        } catch (e) {
+          setIdoError({
+            exists: true,
+            message: e.code + " - " + e.argument
+          });
+          setTimeout(() => {
+            setIdoError({
+              exists: false,
+              message: ''
+            });
+          }, 4000);
+          return;
+        }
+        if (addStatus.status === true) {
           const ido = {
             ...values
           };
@@ -214,6 +226,7 @@ const AddIdoForm = () => {
     console.log(info)
     try {
       let response = await addIdo(web3, FactoryContract, ethAddress, info, link);
+      console.log(response,"++++++++")
       return response.status;
     } catch (e) {
       setIdoError({

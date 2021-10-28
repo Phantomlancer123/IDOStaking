@@ -99,6 +99,13 @@ export const AdminDashboardHeader = ({
                 </a>
               </Link>
             </li>
+            <li>
+              <Link href="/admin/lottery">
+                <a>
+                  Lottery
+                </a>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

@@ -2,6 +2,7 @@
   position: relative;
   height: calc(100vh - 157px);
   overflow: auto;
+  padding-top: 5px;
 }
 
 .main::-webkit-scrollbar {
@@ -85,4 +86,35 @@
 }
 .tableContainer table tbody tr td {
   padding: 1%;
+}
+.buttonWrapper{
+  display: flex;
+}
+
+.button {
+  border: none;
+  border-radius: 14px;
+  padding: 5px;
+  text-align: center;
+  background-color: #41c0f2;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  margin-right: 20px;
+}
+
+.button:hover {
+  background-color: #1d9bf5;
+}
+.button:active {
+  background-color: #91d7f2;
+}
+.input{
+  margin-right: 20px;
+  padding: 3px 10px;
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
 }

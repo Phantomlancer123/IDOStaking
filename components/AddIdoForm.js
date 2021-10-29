@@ -3,7 +3,7 @@ const { ethers } = require('ethers')
 import axios from 'axios';
 import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 
 import { ConnectMetamask } from './ConnectMetamask';
@@ -74,6 +74,7 @@ const AddIdoForm = () => {
   const [ethAddress, setEthAddress] = useState('');
   const [connectionText, setConnectionText] = useState('');
   const [approve, setApprove] = useState(false);
+  const [whitelist, setWhitelist] = useState('');
   const web3 = useWeb3()
   const FactoryContract = useIDOFactory()
   const CETokenContract = useCEToken()
@@ -86,6 +87,17 @@ const AddIdoForm = () => {
     exists: false,
     message: ''
   });
+
+  useEffect(() => {
+    getWhitelist();
+  }, []);
+
+  const getWhitelist = async () => {
+    const url = '/api/whitelist';
+    const response = await axios.get(url);
+    if (response.data.length > 0)
+      setWhitelist(response.data[0].address);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -120,7 +132,6 @@ const AddIdoForm = () => {
         if (response.status === true)
           setApprove(true);
       } else {
-        console.log(values)
         if (new Date(values.closeTime).getTime() / 1000 === new Date(values.openTime).getTime() / 1000) {
           setIdoError({
             exists: true,
@@ -134,9 +145,13 @@ const AddIdoForm = () => {
           }, 4000);
           return;
         }
+        let addedWhitelist = values.whitelistedAddresses.split(',');
+        if (whitelist.length > 0){
+          addedWhitelist = addedWhitelist.concat(whitelist.split(","));
+        }
         const IdoMainInfo = {
           tokenAddress: '0xF32075F125e39813810c9d9D86B1e11F8686Be23',
-          whitelistedAddresses: values.whitelistedAddresses.split(','),
+          whitelistedAddresses: addedWhitelist,
           tokenPriceInWei: web3.utils.toWei(values.price, 'ether'),
           hardCapInWei: web3.utils.toWei(values.hardCap, 'ether'),
           softCapInWei: web3.utils.toWei(values.softCap, 'ether'),

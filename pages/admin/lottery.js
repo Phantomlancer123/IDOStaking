@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import * as XLSX from 'xlsx';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import { ConnectMetamask } from '../../components/ConnectMetamask';
 import { Footer } from '../../components/Footer';
@@ -128,7 +130,7 @@ export default function Dashboard() {
 		};
 		axios({
 			method: 'post',
-			url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/addWhitelist`,
+			url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/whitelist`,
 			headers,
 			data: address.join(",")
 		})
@@ -177,7 +179,10 @@ export default function Dashboard() {
 						<div className={styles.buttonWrapper}>
 							<input type="number" className={styles.input} value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
 							<button className={styles.button} onClick={generate}>Generate</button>
-							<button className={styles.button} onClick={save}>Save</button>
+							{
+								isGenerated && 
+								<button className={styles.button} onClick={save}>Save</button>
+							}
 							<input
 								type="file"
 								accept=".csv,.xlsx,.xls"

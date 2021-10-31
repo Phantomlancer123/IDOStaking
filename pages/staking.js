@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import useWeb3 from '../hooks/useWeb3'
 import { useStaking, useCEToken, useCEGToken } from '../hooks/useContract'
-import { getBalanceOfCE, getBalanceOfCEG, setStake, setTokenApprove, getStakeAmount, getStakeProfit, setWithdraw } from '../hooks/common'
+import { getBalanceOfCE, getBalanceOfCEG, setStake, setTokenApprove, getStakeAmount, getStakeProfit, setWithdraw, getAllowance } from '../hooks/common'
 import { ConnectMetamask } from '../components/ConnectMetamask';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
@@ -34,6 +34,12 @@ export default function Staking() {
       setBalance(await getBalanceOfCE(web3, CETokenContract, ethAddress));
       setTotalStakeAmount(await getStakeAmount(web3, StakingContract, ethAddress));
       setStakeProfit(await getStakeProfit(web3, StakingContract, ethAddress));
+      if (await getAllowance(web3, CETokenContract, ethAddress) > 1000000){
+        setApprove(true);
+      }
+      if (await getAllowance(web3, CEGTokenContract, ethAddress) > 1000000){
+        setWithdrawApprove(true);
+      }
     }
   }, [ethAddress]);
 

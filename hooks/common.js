@@ -40,7 +40,7 @@ export const getBalanceOfCEG = async (web3, contract, account) => {
 
 export const setTokenApprove = async (web3, contract, account, amount) => {
     if (contract){
-        const response = await contract.methods.approve(getStakingAddress(), web3.utils.toWei(amount+1, 'ether')).send({ from: account });
+        const response = await contract.methods.approve(getStakingAddress(), web3.utils.toWei('999999999', 'ether')).send({ from: account });
         console.log(response)
         return response
     }else{
@@ -101,6 +101,15 @@ export const setCEApproveFactory = async (web3, contract, account, amount) => {
     if (contract){
         const response = await contract.methods.approve(getIDOFactoryAddress(), web3.utils.toWei((amount+1).toString(), 'ether')).send({ from: account });
         return response
+    }else{
+        return [];
+    }
+}
+
+export const getAllowance = async (web3, contract, account) => {
+    if (contract){
+        const response = await contract.methods.allowance(account, getStakingAddress()).call({ from: account });
+        return web3.utils.fromWei(response, 'ether');
     }else{
         return [];
     }

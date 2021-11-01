@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import * as XLSX from 'xlsx';
+import { CSVLink } from "react-csv";
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -18,6 +19,11 @@ const useStyles = makeStyles(() => ({
 	}
 }));
 
+const headers = [
+	{ label: "Address", key: "HolderAddress" },
+	{ label: "Balance", key: "Balance" }
+];
+
 export default function Dashboard() {
 	const classes = useStyles();
 	const [ethAddress, setEthAddress] = useState('');
@@ -27,10 +33,19 @@ export default function Dashboard() {
 	const [whitelist, setWhitelist] = useState([]);
 	const [amount, setAmount] = useState(0);
 	const [isGenerated, setIsGenerated] = useState(false);
+	const [csvReport, setCsvReport] = useState({
+		data: whitelist,
+		headers: headers,
+		filename: 'Whitelist_Address.csv'
+	});
 
 	useEffect(async () => {
-
-	}, []);
+		setCsvReport({
+			data: whitelist,
+			headers: headers,
+			filename: 'Whitelist_Address.csv'
+		});
+	}, [whitelist]);
 
 	const handleFileUpload = e => {
 		const file = e.target.files[0];
@@ -120,7 +135,7 @@ export default function Dashboard() {
 
 	const save = () => {
 		let address = [];
-		for (let i=0;i<whitelist.length;i++){
+		for (let i = 0; i < whitelist.length; i++) {
 			address.push(whitelist[i].HolderAddress);
 		}
 		const token = Cookies.get('access_token');
@@ -180,11 +195,12 @@ export default function Dashboard() {
 							<input type="number" className={styles.input} value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
 							<button className={styles.button} onClick={generate}>Generate</button>
 							{
-								isGenerated && 
-								<button className={styles.button} onClick={save}>Save</button>
+								isGenerated &&
+								<CSVLink {...csvReport} className={styles.button} onClick={save}>Save</CSVLink>
 							}
 							<input
 								type="file"
+								className={styles.file}
 								accept=".csv,.xlsx,.xls"
 								onChange={handleFileUpload}
 							/>

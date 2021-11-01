@@ -102,6 +102,8 @@
   cursor: pointer;
   padding: 5px 20px;
   margin-right: 20px;
+  font-size: 14px;
+  color: black;
 }
 
 .button:hover {
@@ -117,4 +119,7 @@
   background-color: transparent;
   border-radius: 5px;
   color: white;
+}
+.file{
+  padding-top: 5px;
 }

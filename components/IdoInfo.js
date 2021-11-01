@@ -56,7 +56,6 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
       <div className={styles.idoBody}>
         <div className={styles.row}>
           <p>{pool.description}</p>
-          <button>Closed</button>
         </div>
         <p className={styles.idoStatus}>
           IDO Status:

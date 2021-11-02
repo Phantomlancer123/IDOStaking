@@ -139,7 +139,7 @@
 .idoBody .idoInfo .infoRow p {
   margin: 0;
 }
-.idoBody .idoInfo .infoRow p:nth-last-child(1) {
+.idoBody .idoInfo .infoRow > p:nth-last-child(1) {
   margin-left: auto;
   width: 50%;
 }

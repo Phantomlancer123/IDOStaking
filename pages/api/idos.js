@@ -49,7 +49,8 @@ export default async function handler(req, res) {
           price,
           poolCap,
           access,
-          participants
+          participants,
+          address
         } = body;
         // only admins can post idos
         const user = await UserModel.findById(decoded.user_id);
@@ -75,7 +76,8 @@ export default async function handler(req, res) {
           poolCap,
           access,
           participants,
-          added_by: decoded.user_id
+          added_by: decoded.user_id,
+          address
         });
         return res.status(201).send(newIdo);
       } catch (error) {

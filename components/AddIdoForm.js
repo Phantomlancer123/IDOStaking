@@ -187,7 +187,8 @@ const AddIdoForm = () => {
         }
         if (addStatus.status === true) {
           const ido = {
-            ...values
+            ...values,
+            address: addStatus.events.IDOCreated.returnValues.idoAddress
           };
           const token = Cookies.get('access_token');
           const headers = {

@@ -12,10 +12,12 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
       <button className={styles.backBtn} onClick={handleBackClick}>
         {'< '}Back
       </button>
-      <h4>
-        <span>{pool.name}</span>
-        {' Pool'}
-      </h4>
+      <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
+        <h4>
+          <span>{pool.name}</span>
+          {' Pool'}
+        </h4>
+      </a>
       <div className={styles.idoHeader}>
         <div className={styles.row}>
           <div className={`${styles.rowColumn} ${styles.left}`}>
@@ -23,7 +25,9 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
               <img src={pool.logo} alt={`${pool.name} logo`} />
             </div>
             <div>
-              <h5 className={styles.idoName}>{pool.name}</h5>
+            <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
+                <h5 className={styles.idoName}>{pool.name}</h5>
+              </a>
               <p className={styles.idoLinks}>
                 <a href={pool.website} target="_blank" rel="noreferrer">
                   Website
@@ -40,7 +44,7 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
             </div>
           </div>
           <div className={`${styles.rowColumn} ${styles.center}`}>
-            {'Remaining time: '}
+            {'Status: '}
             <span> &nbsp;{pool.status}</span>
           </div>
           <div className={styles.right}>
@@ -140,6 +144,12 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
             <div className={`${styles.row} ${styles.infoRow}`}>
               <p>Decimals</p>
               <p>18</p>
+            </div>
+            <div className={`${styles.row} ${styles.infoRow}`}>
+              <p>Address</p>
+              <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
+                <p>{pool.address.substr(0, 6)}...</p>
+              </a>
             </div>
           </div>
         </div>

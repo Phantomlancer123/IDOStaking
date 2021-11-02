@@ -78,6 +78,9 @@ const IdoSchema = new Schema(
     added_by: {
       type: mongoose.Types.ObjectId,
       ref: 'User'
+    },
+    address: {
+      type: String
     }
   },
   { timestamps: true }

@@ -131,7 +131,8 @@ const AddIdoForm = () => {
       if (approve === false) {
         const abi = CEToken.abi;
         const newTokenContract = new web3.eth.Contract(abi, values.tokenAddress);
-        await setCEApproveFactory(web3, newTokenContract, ethAddress, 99999999);
+        let response = await setCEApproveFactory(web3, newTokenContract, ethAddress, 99999999);
+        console.log(response, "+++++++++++++++")
         if (response.status === true)
           setApprove(true);
       } else {
@@ -152,83 +153,83 @@ const AddIdoForm = () => {
         if (whitelist.length > 0){
           addedWhitelist = addedWhitelist.concat(whitelist.split(","));
         }
-        // const IdoMainInfo = {
-        //   tokenAddress: '0xF32075F125e39813810c9d9D86B1e11F8686Be23',
-        //   whitelistedAddresses: addedWhitelist,
-        //   tokenPriceInWei: web3.utils.toWei(values.price, 'ether'),
-        //   hardCapInWei: web3.utils.toWei(values.hardCap, 'ether'),
-        //   softCapInWei: web3.utils.toWei(values.softCap, 'ether'),
-        //   maxInvestInWei: web3.utils.toWei(values.maxInvest, 'ether'),
-        //   minInvestInWei: web3.utils.toWei(values.minInvest, 'ether'),
-        //   openTime: new Date(values.openTime).getTime() / 1000,
-        //   closeTime: new Date(values.closeTime).getTime() / 1000,
-        //   decimals: 18,
-        // };
+        const IdoMainInfo = {
+          tokenAddress: values.tokenAddress,
+          whitelistedAddresses: addedWhitelist,
+          tokenPriceInWei: web3.utils.toWei(values.price, 'ether'),
+          hardCapInWei: web3.utils.toWei(values.hardCap, 'ether'),
+          softCapInWei: web3.utils.toWei(values.softCap, 'ether'),
+          maxInvestInWei: web3.utils.toWei(values.maxInvest, 'ether'),
+          minInvestInWei: web3.utils.toWei(values.minInvest, 'ether'),
+          openTime: new Date(values.openTime).getTime() / 1000,
+          closeTime: new Date(values.closeTime).getTime() / 1000,
+          decimals: 18,
+        };
 
-        // const Links = {
-        //   saleTitle: ethers.utils.formatBytes32String(values.name),
-        //   linkTelegram: ethers.utils.formatBytes32String(values.telegram),
-        //   linkDiscord: ethers.utils.formatBytes32String(''),
-        //   linkTwitter: ethers.utils.formatBytes32String(values.twitter),
-        //   linkWebsite: ethers.utils.formatBytes32String(values.website),
-        // };
-        // let addStatus;
-        // try {
-        //   addStatus = await addIdo(web3, FactoryContract, ethAddress, IdoMainInfo, Links);
-        // } catch (e) {
-        //   setIdoError({
-        //     exists: true,
-        //     message: e.code + " - " + e.argument
-        //   });
-        //   setTimeout(() => {
-        //     setIdoError({
-        //       exists: false,
-        //       message: ''
-        //     });
-        //   }, 4000);
-        //   return;
-        // }
-        // if (addStatus.status === true) {
-        //   const ido = {
-        //     ...values,
-        //     address: addStatus.events.IDOCreated.returnValues.idoAddress
-        //   };
-        //   const token = Cookies.get('access_token');
-        //   const headers = {
-        //     'Content-Type': 'application/json',
-        //     authorization: `Bearer ${token}`
-        //   };
-        //   axios({
-        //     method: 'post',
-        //     url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/idos`,
-        //     headers,
-        //     data: ido
-        //   })
-        //     .then(response => {
-        //       setIdoSuccess({
-        //         exists: true,
-        //         message: 'Ido added succesfully'
-        //       });
-        //       setTimeout(() => {
-        //         setIdoSuccess({
-        //           exists: false,
-        //           message: ''
-        //         });
-        //       }, 4000);
-        //     })
-        //     .catch(error => {
-        //       setIdoError({
-        //         exists: true,
-        //         message: error.response.data.message
-        //       });
-        //       setTimeout(() => {
-        //         setIdoError({
-        //           exists: false,
-        //           message: ''
-        //         });
-        //       }, 4000);
-        //     });
-        // }
+        const Links = {
+          saleTitle: ethers.utils.formatBytes32String(values.name),
+          linkTelegram: ethers.utils.formatBytes32String(values.telegram),
+          linkDiscord: ethers.utils.formatBytes32String(''),
+          linkTwitter: ethers.utils.formatBytes32String(values.twitter),
+          linkWebsite: ethers.utils.formatBytes32String(values.website),
+        };
+        let addStatus;
+        try {
+          addStatus = await addIdo(web3, FactoryContract, ethAddress, IdoMainInfo, Links);
+        } catch (e) {
+          setIdoError({
+            exists: true,
+            message: e.code + " - " + e.argument
+          });
+          setTimeout(() => {
+            setIdoError({
+              exists: false,
+              message: ''
+            });
+          }, 4000);
+          return;
+        }
+        if (addStatus.status === true) {
+          const ido = {
+            ...values,
+            address: addStatus.events.IDOCreated.returnValues.idoAddress
+          };
+          const token = Cookies.get('access_token');
+          const headers = {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`
+          };
+          axios({
+            method: 'post',
+            url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/idos`,
+            headers,
+            data: ido
+          })
+            .then(response => {
+              setIdoSuccess({
+                exists: true,
+                message: 'Ido added succesfully'
+              });
+              setTimeout(() => {
+                setIdoSuccess({
+                  exists: false,
+                  message: ''
+                });
+              }, 4000);
+            })
+            .catch(error => {
+              setIdoError({
+                exists: true,
+                message: error.response.data.message
+              });
+              setTimeout(() => {
+                setIdoError({
+                  exists: false,
+                  message: ''
+                });
+              }, 4000);
+            });
+        }
       }
     }
   });

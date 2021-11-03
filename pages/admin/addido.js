@@ -36,8 +36,8 @@ export async function getServerSideProps({ req, res }) {
   let isAuthenticated;
   try {
     isAuthenticated = jwt.verify(access_token, process.env.ACCESS_TOKEN_KEY);
-  } catch {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 
   if (!isAuthenticated) {

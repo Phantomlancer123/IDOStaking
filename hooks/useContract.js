@@ -36,3 +36,8 @@ export const useCEGToken = () => {
     const abi = CEGToken.abi;
     return useContract(abi, getCEGAddress())
 }
+
+export const useNewToken = (address) => {
+    const abi = CEToken.abi;
+    return useContract(abi, address)
+}

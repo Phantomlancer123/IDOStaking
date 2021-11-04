@@ -1,5 +1,5 @@
 export const getIDOFactoryAddress = () => {
-  return '0x1BA35ca41455F92684f847A36eF9b2F1FC647Df7'
+  return '0x34019Bb829D5130202f468524e5a6Fa95471Ebc9'
 }
 
 export const getStakingAddress = () => {

@@ -66,7 +66,7 @@ export default function Home() {
       setIdos(idoData);
     };
     getIdos();
-getBanners();
+    getBanners();
   }, []);
   useEffect(async () => {
   }, [ethAddress]);

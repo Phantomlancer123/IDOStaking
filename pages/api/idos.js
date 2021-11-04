@@ -111,6 +111,7 @@ export default async function handler(req, res) {
           message: 'Access token is required for authentication'
         });
       }
+      console.log("-----------")
       try {
         let decoded;
         const authValue = headers.authorization;

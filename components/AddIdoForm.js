@@ -132,7 +132,6 @@ const AddIdoForm = () => {
         const abi = CEToken.abi;
         const newTokenContract = new web3.eth.Contract(abi, values.tokenAddress);
         let response = await setCEApproveFactory(web3, newTokenContract, ethAddress, 99999999);
-        console.log(response, "+++++++++++++++")
         if (response.status === true)
           setApprove(true);
       } else {

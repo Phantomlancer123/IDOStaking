@@ -1,12 +1,35 @@
 import React from 'react';
+import { useRouter } from 'next/router'
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import styles from '../styles/IdoInfo.module.css';
 
 export const IdoInfo = ({ pool, setSelectedPool }) => {
+  const router = useRouter()
+
   const handleBackClick = e => {
     e.preventDefault();
     setSelectedPool({});
   };
+
+  const closeIdo = () => {
+    const token = Cookies.get('access_token');
+    const headers = {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    };
+    axios({
+      method: 'POST',
+      url: `${process.env.NEXT_PUBLIC_FORWARDER_ORIGIN}/api/idos/${pool._id}`,
+      headers,
+      data: {status: 'COMPLETED'}
+    })
+      .then(response => {
+        setSelectedPool({});
+      });
+  }
+
   return (
     <div className={styles.idoContainer}>
       <button className={styles.backBtn} onClick={handleBackClick}>
@@ -25,7 +48,7 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
               <img src={pool.logo} alt={`${pool.name} logo`} />
             </div>
             <div>
-            <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
+              <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
                 <h5 className={styles.idoName}>{pool.name}</h5>
               </a>
               <p className={styles.idoLinks}>
@@ -60,6 +83,10 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
       <div className={styles.idoBody}>
         <div className={styles.row}>
           <p>{pool.description}</p>
+          {
+            router.pathname.startsWith("/admin") &&
+            <button onClick={closeIdo}>Close</button>
+          }
         </div>
         <p className={styles.idoStatus}>
           IDO Status:
@@ -148,7 +175,7 @@ export const IdoInfo = ({ pool, setSelectedPool }) => {
             <div className={`${styles.row} ${styles.infoRow}`}>
               <p>Address</p>
               <a href={"https://rinkeby.etherscan.io/address/" + pool.address} target="_blank">
-                <p>{pool.address.substr(0, 6)}...</p>
+                <p>{pool.address ? pool.address.substr(0, 6) + '...' : ''}</p>
               </a>
             </div>
           </div>

@@ -87,9 +87,9 @@ export const setWithdraw = async (web3, contract, account, amount) => {
     }
 }
 
-export const addIdo = async (web3, contract, account, info, link) => {
+export const addIdo = async (web3, contract, account, info) => {
     if (contract){
-        const response = await contract.methods.createPresale(info ,link).send({ from: account, value:web3.utils.toWei("0.01", "ether") });
+        const response = await contract.methods.createPresale(info).send({ from: account, value:web3.utils.toWei("0.01", "ether") });
         console.log(response)
         return response
     }else{

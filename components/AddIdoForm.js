@@ -161,21 +161,13 @@ const AddIdoForm = () => {
           maxInvestInWei: web3.utils.toWei(values.maxInvest, 'ether'),
           minInvestInWei: web3.utils.toWei(values.minInvest, 'ether'),
           openTime: new Date(values.openTime).getTime() / 1000,
-          closeTime: new Date(values.closeTime).getTime() / 1000,
-          decimals: 18,
-        };
-
-        const Links = {
-          saleTitle: ethers.utils.formatBytes32String(values.name),
-          linkTelegram: ethers.utils.formatBytes32String(values.telegram),
-          linkDiscord: ethers.utils.formatBytes32String(''),
-          linkTwitter: ethers.utils.formatBytes32String(values.twitter),
-          linkWebsite: ethers.utils.formatBytes32String(values.website),
+          closeTime: new Date(values.closeTime).getTime() / 1000
         };
         let addStatus;
         try {
-          addStatus = await addIdo(web3, FactoryContract, ethAddress, IdoMainInfo, Links);
+          addStatus = await addIdo(web3, FactoryContract, ethAddress, IdoMainInfo);
         } catch (e) {
+          console.log(e)
           setIdoError({
             exists: true,
             message: e.code + " - " + e.argument

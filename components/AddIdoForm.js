@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
+import Router from 'next/router'
 
 import CEToken from '../hooks/abis/CEToken.json'
 import { ConnectMetamask } from './ConnectMetamask';
@@ -149,7 +150,7 @@ const AddIdoForm = () => {
           return;
         }
         let addedWhitelist = values.whitelistedAddresses.split(',');
-        if (whitelist.length > 0){
+        if (whitelist.length > 0) {
           addedWhitelist = addedWhitelist.concat(whitelist.split(","));
         }
         const IdoMainInfo = {
@@ -207,6 +208,7 @@ const AddIdoForm = () => {
                   message: ''
                 });
               }, 4000);
+              Router.push('/');
             })
             .catch(error => {
               setIdoError({
@@ -237,7 +239,7 @@ const AddIdoForm = () => {
     console.log(info)
     try {
       let response = await addIdo(web3, FactoryContract, ethAddress, info, link);
-      console.log(response,"++++++++")
+      console.log(response, "++++++++")
       return response.status;
     } catch (e) {
       setIdoError({

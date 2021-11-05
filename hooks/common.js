@@ -5,7 +5,7 @@ export const getAllIdos = async (web3, contract, index) => {
     if (contract){
         const response = await contract.methods.allIdos(index).call()
         console.log(response)
-        return { linkDiscord: response.stringInfo.linkDiscord, linkTelegram: response.stringInfo.linkTelegram, linkTwitter: response.stringInfo.linkTwitter, linkWebsite: response.stringInfo.linkWebsite, saleTitle: response.stringInfo.saleTitle, closeTime: response.info.closeTime, decimals: response.info.decimals, hardCapInWei: response.info.hardCapInWei, maxInvestInWei: response.info.maxInvestInWei, minInvestInWei: response.info.minInvestInWei, openTime: response.info.openTime, softCapInWei: response.info.softCapInWei, tokenAddress: response.info.tokenAddress, tokenPriceInWei: response.info.tokenPriceInWei, whitelistedAddresses: response.info.whitelistedAddresses, creator: response.creator }
+        return { closeTime: response.info.closeTime, decimals: response.info.decimals, hardCapInWei: response.info.hardCapInWei, maxInvestInWei: response.info.maxInvestInWei, minInvestInWei: response.info.minInvestInWei, openTime: response.info.openTime, softCapInWei: response.info.softCapInWei, tokenAddress: response.info.tokenAddress, tokenPriceInWei: response.info.tokenPriceInWei, whitelistedAddresses: response.info.whitelistedAddresses, creator: response.creator }
     }else{
         return [];
     }
